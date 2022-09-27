@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 offset-3 pt-5">
+      <mat-card class="mt-5">
+        <mat-card-title>Create new post</mat-card-title>
+        <mat-card-content>
+          <form [formGroup]="postForm" (ngSubmit)="create()">
+            <mat-form-field appearance="outline" class="mb-2 w-100">
+              <mat-label>Title</mat-label>
+              <input matInput [formControl]="postForm.controls.title">
+              <mat-error *ngIf="postForm.controls.title.invalid">Title required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="mb-2 w-100">
+              <mat-label>Content</mat-label>
+              <textarea matInput rows="10" [formControl]="postForm.controls.content"></textarea>
+              <mat-error *ngIf="postForm.controls.content.invalid">Content required</mat-error>
+            </mat-form-field>
+
+            <div class="mt-3 d-flex justify-content-end">
+              <button mat-raised-button color="primary">Create</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

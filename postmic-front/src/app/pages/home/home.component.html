@@ -1,0 +1,6 @@
+<mat-toolbar color="primary">
+  <span>PostMic</span>
+  <a mat-flat-button color="primary" routerLink="/posts/create">Create post</a>
+  <a mat-flat-button color="primary" [routerLink]="['authors', authService.authInfo.user?.id, 'posts']">My posts</a>
+</mat-toolbar>
+

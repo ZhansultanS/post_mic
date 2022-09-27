@@ -1,0 +1,38 @@
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div class="d-flex gap-4 mb-5">
+        <button mat-stroked-button (click)="postStatus.next('active')">Active</button>
+        <button mat-stroked-button (click)="postStatus.next('waiting')">Waiting</button>
+        <button mat-stroked-button (click)="postStatus.next('failed')">Failed</button>
+      </div>
+
+      <div *ngIf="postPage$ | async as postPage">
+        <div *ngIf="postPage.posts.length; else noPosts">
+          <div class="mt-5">
+            <mat-card class="w-100 my-4" *ngFor="let post of postPage.posts">
+              <mat-card-title>{{post.title}}</mat-card-title>
+              <mat-card-content>
+                <div class="mb-2">
+                  {{post.contentInCard}}
+                </div>
+                <div>
+                  <span style="font-size: 12px">{{post.createdAt}}</span>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <mat-paginator [length]="postPage.totalItems"
+                         [pageSize]="10"
+                         [pageSizeOptions]="[1, 5, 10, 20]"
+                         aria-label="Select page">
+          </mat-paginator>
+        </div>
+        <ng-template #noPosts>
+          No posts with status '{{postStatus.getValue()}}'
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
